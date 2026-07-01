@@ -7,6 +7,7 @@ import { ListingCard } from "@/components/agent/ListingCard";
 import { AgentTestimonials } from "@/components/agent/AgentTestimonials";
 import { ShareCard } from "@/components/agent/ShareCard";
 import { ContactForm } from "@/components/shared/ContactForm";
+import { Reveal } from "@/components/shared/Reveal";
 
 type PageParams = { params: Promise<{ slug: string }> };
 
@@ -37,15 +38,19 @@ export default async function AgentDemoPage({ params }: PageParams) {
       <AgentHero agent={agent} />
 
       <section className="mx-auto max-w-4xl px-6 py-14">
-        <h2 className="font-display text-2xl font-medium text-ink-950">
-          Current Listings
-        </h2>
-        <p className="mt-1 text-sm text-stone-500">
-          {agent.listings.length} listings · updated as they change
-        </p>
+        <Reveal>
+          <h2 className="font-display text-2xl font-medium text-ink-950">
+            Current Listings
+          </h2>
+          <p className="mt-1 text-sm text-stone-500">
+            {agent.listings.length} listings · updated as they change
+          </p>
+        </Reveal>
         <div className="mt-6 grid gap-6 sm:grid-cols-2">
-          {agent.listings.map((listing) => (
-            <ListingCard key={listing.slug} listing={listing} />
+          {agent.listings.map((listing, index) => (
+            <Reveal key={listing.slug} delay={(index % 2) * 0.08}>
+              <ListingCard listing={listing} />
+            </Reveal>
           ))}
         </div>
       </section>
@@ -53,8 +58,10 @@ export default async function AgentDemoPage({ params }: PageParams) {
       <AgentTestimonials testimonials={agent.testimonials} />
 
       <section className="mx-auto grid max-w-4xl gap-6 px-6 py-14 sm:grid-cols-2">
-        <ShareCard url={cardUrl} />
-        <div className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
+        <Reveal>
+          <ShareCard url={cardUrl} />
+        </Reveal>
+        <Reveal delay={0.1} className="rounded-3xl border border-stone-200 bg-white p-8 shadow-sm">
           <p className="font-display text-xl font-medium text-ink-950">
             Get in touch with {agent.name.split(" ")[0]}
           </p>
@@ -65,7 +72,7 @@ export default async function AgentDemoPage({ params }: PageParams) {
           <div className="mt-6">
             <ContactForm />
           </div>
-        </div>
+        </Reveal>
       </section>
     </div>
   );

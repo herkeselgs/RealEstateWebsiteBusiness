@@ -3,11 +3,12 @@ import { Check } from "lucide-react";
 import { pricingFaqs, pricingPlans } from "@/data/pricing";
 import { formatPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/shared/Reveal";
 
 export function PricingSection({ showFaqs = false }: { showFaqs?: boolean }) {
   return (
     <section id="pricing" className="mx-auto max-w-6xl px-6 py-20">
-      <div className="mx-auto max-w-2xl text-center">
+      <Reveal className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl font-medium text-ink-950 sm:text-4xl">
           Simple, honest pricing
         </h2>
@@ -15,17 +16,18 @@ export function PricingSection({ showFaqs = false }: { showFaqs?: boolean }) {
           One setup fee to build your card, one monthly retainer to keep it
           live. No surprise add-ons.
         </p>
-      </div>
+      </Reveal>
 
       <div className="mt-14 grid gap-8 md:grid-cols-2">
-        {pricingPlans.map((plan) => (
-          <div
+        {pricingPlans.map((plan, index) => (
+          <Reveal
             key={plan.name}
+            delay={index * 0.1}
             className={cn(
-              "flex flex-col rounded-3xl border p-8",
+              "flex flex-col rounded-3xl border p-8 transition hover:-translate-y-1",
               plan.highlighted
-                ? "border-ink-950 bg-ink-950 text-white shadow-xl"
-                : "border-stone-200 bg-white"
+                ? "border-ink-950 bg-ink-950 text-white shadow-xl hover:shadow-2xl"
+                : "border-stone-200 bg-white hover:shadow-lg"
             )}
           >
             {plan.highlighted ? (
@@ -82,7 +84,7 @@ export function PricingSection({ showFaqs = false }: { showFaqs?: boolean }) {
             >
               {plan.cta}
             </Link>
-          </div>
+          </Reveal>
         ))}
       </div>
 
@@ -92,11 +94,15 @@ export function PricingSection({ showFaqs = false }: { showFaqs?: boolean }) {
             Common questions
           </h3>
           <dl className="mt-8 space-y-6">
-            {pricingFaqs.map((faq) => (
-              <div key={faq.question} className="rounded-2xl border border-stone-200 bg-white p-6">
+            {pricingFaqs.map((faq, index) => (
+              <Reveal
+                key={faq.question}
+                delay={index * 0.05}
+                className="rounded-2xl border border-stone-200 bg-white p-6"
+              >
                 <dt className="font-semibold text-ink-950">{faq.question}</dt>
                 <dd className="mt-2 text-sm leading-relaxed text-stone-600">{faq.answer}</dd>
-              </div>
+              </Reveal>
             ))}
           </dl>
         </div>

@@ -15,12 +15,12 @@ export function DemoShowcase() {
             See it in action
           </p>
           <h2 className="mt-3 font-display text-3xl font-medium text-white sm:text-4xl">
-            This is a real, live card — not a mockup
+            Click around. It&apos;s a real, working page.
           </h2>
           <p className="mt-4 text-lg text-stone-300">
-            Meet {jordanEllison.name}, a fictional agent built to show exactly
-            what your clients would see. Explore the full page, then imagine
-            it with your name on it.
+            {jordanEllison.name} isn&apos;t a real agent, but this page is
+            built exactly the way yours would be — same listings feed, same
+            contact form, same QR code on the back. Open it on your phone.
           </p>
         </div>
 

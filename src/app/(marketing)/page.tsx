@@ -1,4 +1,4 @@
-import { Hero } from "@/components/home/Hero";
+import { Hero3DLoader } from "@/components/hero3d/Hero3DLoader";
 import { TrustSection } from "@/components/home/TrustSection";
 import { HowItWorks } from "@/components/home/HowItWorks";
 import { FeatureGrid } from "@/components/home/FeatureGrid";
@@ -9,7 +9,7 @@ import { ContactSection } from "@/components/home/ContactSection";
 export default function HomePage() {
   return (
     <>
-      <Hero />
+      <Hero3DLoader />
       <TrustSection />
       <HowItWorks />
       <DemoShowcase />

@@ -4,10 +4,10 @@ import { ListingPhoto } from "@/components/agent/ListingPhoto";
 import { cn, formatCompactNumber, formatPrice } from "@/lib/utils";
 
 const STATUS_STYLES: Record<Listing["status"], { label: string; className: string }> = {
-  active: { label: "Active", className: "bg-emerald-600 text-white" },
-  pending: { label: "Pending", className: "bg-amber-500 text-white" },
-  "coming-soon": { label: "Coming Soon", className: "bg-sky-600 text-white" },
-  "open-house": { label: "Open House", className: "bg-brass-500 text-white" },
+  active: { label: "Active", className: "bg-emerald-700 text-white" },
+  pending: { label: "Pending", className: "bg-clay-500 text-white" },
+  "coming-soon": { label: "Coming Soon", className: "bg-ink-800 text-white" },
+  "open-house": { label: "Open House", className: "bg-brass-500 text-ink-950" },
 };
 
 export function ListingCard({ listing }: { listing: Listing }) {
@@ -15,8 +15,11 @@ export function ListingCard({ listing }: { listing: Listing }) {
 
   return (
     <article className="group overflow-hidden rounded-2xl border border-stone-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-      <div className="relative">
-        <ListingPhoto theme={listing.photoTheme} className="h-48 w-full" />
+      <div className="relative overflow-hidden">
+        <ListingPhoto
+          theme={listing.photoTheme}
+          className="h-48 w-full transition duration-500 group-hover:scale-105"
+        />
         <span
           className={cn(
             "absolute left-3 top-3 rounded-full px-2.5 py-1 text-xs font-semibold shadow-sm",

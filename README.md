@@ -13,6 +13,8 @@ a client.
 - [Tailwind CSS v4](https://tailwindcss.com)
 - TypeScript
 - [`qrcode`](https://www.npmjs.com/package/qrcode) for generating live QR codes on demo card pages
+- [`react-three-fiber` / `drei`](https://docs.pmnd.rs/react-three-fiber) for the scroll-driven 3D hero
+- [`framer-motion`](https://www.framer.com/motion/) for scroll-linked captions and scroll-reveal polish
 
 ## Getting started
 
@@ -32,9 +34,10 @@ src/
     demo/                /demo (gallery) and /demo/[slug] (live agent card)
     api/contact/         POST endpoint the contact form submits to
   components/
-    home/                Homepage sections (Hero, HowItWorks, DemoShowcase, ...)
+    hero3d/                Scroll-driven 3D hero (Canvas, Scene, Card, Phone, static fallback)
+    home/                  Homepage sections (HowItWorks, DemoShowcase, ...)
     agent/                Agent card page building blocks (hero, listings, QR share card)
-    shared/               Reusable pieces (ContactForm, PricingSection, Logo)
+    shared/               Reusable pieces (ContactForm, PricingSection, Reveal, Logo)
     layout/               Header / Footer for marketing pages
   data/
     agents/               One file per agent — see jordan-ellison.ts
@@ -42,6 +45,17 @@ src/
     site.ts                 Brand name, contact info, social links
   types/agent.ts           Agent & Listing types
 ```
+
+## The 3D hero
+
+`src/components/hero3d/Hero3DSection.tsx` drives the scroll sequence using
+`@react-three/drei`'s `ScrollControls` — the card and phone are plain
+Three.js primitives with canvas-generated textures (including a real,
+scannable QR code), not imported 3D models. It's loaded via
+`next/dynamic({ ssr: false })` so the ~900KB three.js/R3F bundle never
+ships to `/pricing`, `/contact`, or the demo page. Users with
+`prefers-reduced-motion` or no WebGL support get `HeroStaticFallback.tsx`
+instead — a static, non-3D version of the same pitch.
 
 ## Adding a real agent
 

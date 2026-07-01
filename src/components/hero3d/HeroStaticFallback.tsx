@@ -8,14 +8,14 @@ import { formatPrice } from "@/lib/utils";
 const badges = [
   { icon: Smartphone, label: "Works on any phone — no app to download" },
   { icon: QrCode, label: "One QR code for signs, cards & social" },
-  { icon: ShieldCheck, label: "Listings updated as they change" },
+  { icon: ShieldCheck, label: "Listings update as they change" },
 ];
 
-export function Hero() {
+export function HeroStaticFallback() {
   const previewListings = jordanEllison.listings.slice(0, 2);
 
   return (
-    <section className="relative overflow-hidden bg-ink-950">
+    <section className="relative overflow-hidden bg-ink-950 bg-grain">
       <div
         className="pointer-events-none absolute inset-0 opacity-40"
         style={{
@@ -25,11 +25,11 @@ export function Hero() {
       />
       <div className="relative mx-auto grid max-w-6xl gap-16 px-6 py-20 md:grid-cols-2 md:items-center md:py-28">
         <div>
-          <p className="inline-flex items-center rounded-full border border-brass-400/30 bg-brass-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brass-300">
-            For real estate agents
+          <p className="inline-flex items-center rounded-full border border-brass-400/30 bg-brass-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-brass-300">
+            For agents who&apos;ve earned the introduction
           </p>
-          <h1 className="mt-5 font-display text-4xl font-medium leading-[1.1] text-white sm:text-5xl">
-            A business card that&apos;s never out of date.
+          <h1 className="mt-5 font-display text-4xl font-medium leading-[1.1] text-white text-balance sm:text-5xl">
+            The last business card you&apos;ll ever reprint.
           </h1>
           <p className="mt-5 max-w-lg text-lg leading-relaxed text-stone-300">
             {site.name} turns your bio, credentials, and current listings into

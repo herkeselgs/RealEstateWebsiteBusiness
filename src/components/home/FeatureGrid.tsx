@@ -6,43 +6,44 @@ import {
   Smartphone,
   Sparkles,
 } from "lucide-react";
+import { Reveal } from "@/components/shared/Reveal";
 
 const features = [
   {
     icon: ListChecks,
-    title: "Live listings, always current",
+    title: "Every listing, actually current",
     description:
-      "Every active, pending, and coming-soon listing in one clean feed — updated as your business changes.",
+      "Active, pending, coming soon — one clean feed that matches your MLS, not a page you built in April and forgot about.",
   },
   {
     icon: BadgeCheck,
-    title: "Credentials up front",
+    title: "Your credentials, not buried",
     description:
-      "License, designations, years of experience, and specialties — the proof points that build trust fast.",
+      "License, designations, years in the business — the things a stranger looks for before they decide you're worth a phone call.",
   },
   {
     icon: QrCode,
     title: "One QR code, everywhere",
     description:
-      "Yard signs, open house flyers, physical cards, Instagram bio — all pointing to the same living page.",
+      "Yard sign, open house flyer, physical card, Instagram bio — every one of them points to the same living page.",
   },
   {
     icon: Smartphone,
-    title: "Built for a phone camera",
+    title: "No app, no friction",
     description:
-      "No app to download, no login required. Scan or tap, and the page loads instantly.",
+      "Nothing to download, nothing to log into. A camera and a tap is the entire user manual.",
   },
   {
     icon: Inbox,
-    title: "Leads land in your inbox",
+    title: "Leads come straight to you",
     description:
-      "Every card includes a contact form so interested buyers can reach you directly, without a middleman.",
+      "Every card has a contact form that lands in your inbox — no portal, no lead-buying middleman taking a cut.",
   },
   {
     icon: Sparkles,
-    title: "Looks like you, not a template",
+    title: "Looks like you paid for it",
     description:
-      "Custom branding, photography, and layout — a page that matches the caliber of the homes you sell.",
+      "Because you did. Custom branding and layout — a page that reads like the caliber of home you actually sell.",
   },
 ];
 
@@ -51,18 +52,19 @@ export function FeatureGrid() {
     <section className="mx-auto max-w-6xl px-6 py-20">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="font-display text-3xl font-medium text-ink-950 sm:text-4xl">
-          Everything a modern real estate presence needs
+          Everything a serious agent&apos;s presence needs
         </h2>
       </div>
 
       <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {features.map((feature) => (
-          <div
+        {features.map((feature, index) => (
+          <Reveal
             key={feature.title}
-            className="rounded-2xl border border-stone-200 bg-white p-6 transition hover:border-brass-300 hover:shadow-md"
+            delay={(index % 3) * 0.08}
+            className="group rounded-2xl border border-stone-200 bg-white p-6 transition hover:-translate-y-1 hover:border-brass-300 hover:shadow-md"
           >
-            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brass-50">
-              <feature.icon className="h-5 w-5 text-brass-600" />
+            <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-brass-50 transition group-hover:bg-brass-400">
+              <feature.icon className="h-5 w-5 text-brass-600 transition group-hover:text-ink-950" />
             </div>
             <h3 className="mt-4 font-display text-lg font-medium text-ink-950">
               {feature.title}
@@ -70,7 +72,7 @@ export function FeatureGrid() {
             <p className="mt-2 text-sm leading-relaxed text-stone-600">
               {feature.description}
             </p>
-          </div>
+          </Reveal>
         ))}
       </div>
     </section>
