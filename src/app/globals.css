@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+:root {
+  --background: #faf8f4;
+  --foreground: #18140f;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-display: var(--font-fraunces);
+
+  /* Warm near-black — charcoal with a hint of brown, not cool slate */
+  --color-ink-950: #14110d;
+  --color-ink-900: #1c1712;
+  --color-ink-800: #2a231a;
+  --color-ink-700: #3a3125;
+
+  /* Brass / foil accent */
+  --color-brass-50: #fbf6ea;
+  --color-brass-100: #f3e6c4;
+  --color-brass-200: #ead29b;
+  --color-brass-300: #d9b96a;
+  --color-brass-400: #c8a24c;
+  --color-brass-500: #ab7f36;
+  --color-brass-600: #8a662c;
+
+  /* Clay — secondary warm accent for variety */
+  --color-clay-50: #fbf1ec;
+  --color-clay-300: #dba48b;
+  --color-clay-400: #c17a58;
+  --color-clay-500: #a85f40;
+  --color-clay-600: #8a4a30;
+
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+/* Subtle film-grain texture for dark/hero surfaces — pure CSS, no asset requests */
+.bg-grain {
+  position: relative;
+  isolation: isolate;
+}
+
+.bg-grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 160px 160px;
+}
+
+.text-gradient-brass {
+  background-image: linear-gradient(
+    100deg,
+    var(--color-brass-500) 0%,
+    var(--color-brass-200) 32%,
+    var(--color-brass-300) 48%,
+    var(--color-brass-500) 68%,
+    var(--color-brass-400) 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
